@@ -4,7 +4,6 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-// Package enclave provides functionality for Go enclaves like remote attestation and sealing.
 package enclave
 
 // #include "structs.h"
@@ -59,6 +58,7 @@ func GetRemoteReport(reportData []byte) ([]byte, error) {
 //
 // Returns the parsed report if the signature is valid.
 // Returns an error if the signature is invalid.
+// The returned report's content still must be verified.
 func VerifyRemoteReport(reportBytes []byte) (attestation.Report, error) {
 	if len(reportBytes) <= 0 {
 		return attestation.Report{}, attestation.ErrEmptyReport
